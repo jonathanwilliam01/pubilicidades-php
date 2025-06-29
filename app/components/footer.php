@@ -7,8 +7,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
+    height: 35px;
     border-top: 1px solid rgba(107, 107, 107, 0.404);
-    font-size: 15px;
+    font-size: 14px;
 }
 </style>

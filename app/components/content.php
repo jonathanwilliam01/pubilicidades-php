@@ -13,7 +13,7 @@
 
                                 <ul class="options-menu">
                                     <li class="op-editar" id="edit-publi"> <span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">edit</span>Editar</li>
-                                    <li class="op-excluir" style="color:red"><span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">cancel</span>Excluir</li>
+                                    <li class="op-excluir" style="color:red"><span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">cancel</span>Encerrar</li>
                                 </ul>
                             </div>
                         </div>
@@ -130,6 +130,7 @@ li{
 .bottom-card{
     display: flex;
     justify-content: space-between;
+    margin-top: 5px;
 }
 
 .tag-est{

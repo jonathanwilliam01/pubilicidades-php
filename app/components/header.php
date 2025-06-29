@@ -39,7 +39,7 @@ nav{
 
 .nova-publi{
     padding: 8px 15px;
-    background-color: rgb(82, 108, 255);
+    background-color: rgba(65, 91, 235);
     color: white;
     border: none;
     border-radius: 7px;
