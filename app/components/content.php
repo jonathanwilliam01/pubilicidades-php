@@ -1,0 +1,142 @@
+<div class="content">
+            <div class="card-ativos">
+                <div class="top-cards">
+                    <div class="card-img">
+                        <img  class="img-card" src="https://jpimg.com.br/uploads/2024/01/aniversario-de-sao-paulo-10-curiosidades-sobre-a-cidade.jpg">
+                    </div>
+                    <div class="card-text" style="width: 91%;">
+                        <div class="titulo-edit-card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                            <p><b>Lorem ipsum dolor sit amet consectetur adipisicing elit.</b></p>
+                            <div class="right-titulo-card">
+                                <buttom class="publi-atual">Publicidade Atual</buttom>
+                                <span class="material-symbols-outlined more-btn">more_vert</span>
+
+                                <ul class="options-menu">
+                                    <li class="op-editar" id="edit-publi"> <span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">edit</span>Editar</li>
+                                    <li class="op-excluir" style="color:red"><span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">cancel</span>Excluir</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem, numquam assumenda? Harum dicta totam suscipit blanditiis</p>
+                    </div>    
+                </div>
+
+                <div class="bottom-card">
+                    <div class="tags-estado" style="display: flex; align-items: center;">
+                        <h5 class="tag-est">São Paulo</h5>
+                        <h5 class="tag-est">Minas Gerais</h5>
+                    </div>
+                    <div class="validade">
+                        <P class="card-validade" style="display: flex; align-items: center; margin-right:15px"> <span class="material-symbols-outlined" style="margin-right: 4px; font-size: 22px;">calendar_today</span> Ativo até 30/07/2025</P>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script>
+        document.addEventListener('click', function (e) {
+        const btn = e.target.closest('.more-btn');
+
+        document.querySelectorAll('.options-menu').forEach(menu => {
+            menu.style.display = 'none';
+        });
+
+        if (btn) {
+            const menu = btn.parentElement.querySelector('.options-menu');
+            if (menu) {
+                menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+            }
+            e.stopPropagation();
+        };
+
+        overlay.addEventListener('click', e => {
+            if (e.target === overlay) overlay.style.display = 'none';
+             });
+        });
+
+    </script>
+
+<style>
+        .content{
+    display: flex;
+    justify-content: center;
+}
+
+.card-ativos{
+    width: 95%;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 1px 2px 10px #a5a5a5;
+    height: 123px;
+}
+
+.top-cards{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.right-titulo-card{
+    display: flex; 
+    align-items: center;
+    position: relative
+}
+
+.options-menu{
+    list-style:none;
+    padding:6px 0;
+    margin:0;
+    width:130px;
+    background:#fff;
+    border:1px solid #d6d6d6;
+    border-radius:6px;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);
+    position:absolute;
+    top:calc(100% + 6px); 
+    right:0;              
+    display:none;         
+    z-index:1000;
+}
+
+.options-menu li{
+    padding:9px 14px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+li{
+    display: flex;
+    align-items: center;
+}
+
+.options-menu li:hover{
+    background:#f2f2f2;
+}
+
+.publi-atual{
+    background-color: rgb(141, 219, 141);
+    color: rgb(2, 95, 2);
+    padding: 4px;
+    border-radius: 5px;
+}
+
+.img-card{
+    height:80px; 
+    width:100px;
+    padding: 10px 8px 5px 10px;
+    border-radius:12px;
+}
+
+.bottom-card{
+    display: flex;
+    justify-content: space-between;
+}
+
+.tag-est{
+    margin-left: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 3px;
+    margin-bottom: 5px;
+}
+</style>
