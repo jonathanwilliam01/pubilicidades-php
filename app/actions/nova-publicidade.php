@@ -1,5 +1,5 @@
 <div class="nova-publicidade" id="overlayNovaPubli" style="display: none;">
-    <form method="POST">
+    <form method="POST" action="">
         <div class="titulo-form">
             <h3> Nova publicidade</h3>
             <span class="material-symbols-outlined" style="margin-right: 15px;">close</span>
@@ -45,8 +45,26 @@
 
         <div class="form-buttons">
             <button id="cancelar" style="border:1px solid rgb(73, 73, 73); color: rgb(73, 73, 73);"><span class="material-symbols-outlined" style="margin-right: 12px;">close</span>Cancelar</button>
-            <button style="background-color: rgb(65, 91, 235); color: white;"><span class="material-symbols-outlined" style="margin-right: 12px;">check</span>Confirmar</button>
+            <button type="submit" name="confirmar" style="background-color: rgb(65, 91, 235); color: white;"><span class="material-symbols-outlined" style="margin-right: 12px;">check</span>Confirmar</button>
         </div>
+                <?php
+                if(isset($_POST['confirmar'])){
+                    $titulo = $_POST['titulo'];
+                    $descricao = $_POST['descricao'];
+                    $tituloBotao = $_POST['tit-botao'];
+                    $linkBotao = $_POST['link-botao'];
+                    $dtInicio = '06-30-2025';
+                    $dtFim = '07-30-2025';
+
+                    $insert = "insert into publicidades(titulo, descricao, titulo_botao_link, botao_link, dt_inicio, dt_fim) 
+                    values ('$titulo', '$descricao', '$tituloBotao', '$linkBotao', '$dtInicio', '$dtFim')";
+
+                    $pdo->exec($insert); 
+
+                    header('location:index.php');
+                    exit();
+                }
+        ?>
     </form>
 
 </div>
