@@ -4,9 +4,10 @@ $selectPublicidades="
 select 
 id, titulo, descricao, imagem,
 botao_link, titulo_botao_link, sp_estado, mg_estado,
-rj_estado, to_char(dt_inicio, 'DD/MM/YY') as dt_inicio, to_char(dt_fim, 'DD/MM/YY') as dt_fim
-from publicidades
-where dt_fim > current_date";
+rj_estado, to_char(dt_inicio, 'DD/MM/YY') as dt_inicio, to_char(dt_fim, 'DD/MM/YY') as dt_fim,
+case when dt_fim < current_date then 'vencida' 
+     when dt_fim > current_date then 'valida' end as validade
+from publicidades";
 
 $stmt = $pdo->prepare($selectPublicidades); 
 $stmt->execute(); 
@@ -26,7 +27,7 @@ $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div class="titulo-edit-card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
                             <p><b> <?php echo $d['titulo'] ?> </b></p>
                             <div class="right-titulo-card">
-                                <buttom class="publi-atual">Publicidade Atual</buttom>
+                                <?php if($d['validade'] == 'valida') {echo "<buttom class='publi-atual'>Publicidade Atual</buttom>";}; ?>
                                 <span class="material-symbols-outlined more-btn">more_vert</span>
 
                                 <ul class="options-menu">
@@ -46,7 +47,8 @@ $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php if($d['rj_estado'] == 1) { echo "<h5 class='tag-est'> Rio de Janeiro </h5>"; };?>
                     </div>
                     <div class="validade">
-                        <P class="card-validade" style="display: flex; align-items: center; margin-right:15px"> <span class="material-symbols-outlined" style="margin-right: 4px; font-size: 22px;">calendar_today</span> Ativo até <?php echo $d['dt_fim'] ?></P>
+                        <P class="card-validade" style="display: flex; align-items: center; margin-right:15px"> <span class="material-symbols-outlined" style="margin-right: 4px; font-size: 22px;">calendar_today</span> 
+                        <?php if( $d['validade'] == 'valida'){echo "Ativo até " . $d['dt_fim'];} else {echo "Vencida em " . $d['dt_fim'];};?></P>
                     </div>
                 </div>
             </div>
