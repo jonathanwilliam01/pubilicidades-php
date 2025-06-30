@@ -1,12 +1,30 @@
+<?php
+
+$selectPublicidades="
+select 
+id, titulo, descricao, imagem,
+botao_link, titulo_botao_link, sp_estado, mg_estado,
+rj_estado, to_char(dt_inicio, 'DD/MM/YY') as dt_inicio, to_char(dt_fim, 'DD/MM/YY') as dt_fim
+from publicidades
+where dt_fim > current_date";
+
+$stmt = $pdo->prepare($selectPublicidades); 
+$stmt->execute(); 
+
+$dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
 <div class="content">
+    <?php foreach($dados as $d): ?>
             <div class="card-ativos">
                 <div class="top-cards">
                     <div class="card-img">
-                        <img  class="img-card" src="https://jpimg.com.br/uploads/2024/01/aniversario-de-sao-paulo-10-curiosidades-sobre-a-cidade.jpg">
+                        <img class="img-card" src="./uploads/<?php echo $d['imagem'] ?>">
                     </div>
                     <div class="card-text" style="width: 91%;">
                         <div class="titulo-edit-card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
-                            <p><b>Lorem ipsum dolor sit amet consectetur adipisicing elit.</b></p>
+                            <p><b> <?php echo $d['titulo'] ?> </b></p>
                             <div class="right-titulo-card">
                                 <buttom class="publi-atual">Publicidade Atual</buttom>
                                 <span class="material-symbols-outlined more-btn">more_vert</span>
@@ -17,20 +35,22 @@
                                 </ul>
                             </div>
                         </div>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem, numquam assumenda? Harum dicta totam suscipit blanditiis</p>
+                        <p><?php echo $d['descricao'] ?></p>
                     </div>    
                 </div>
 
                 <div class="bottom-card">
                     <div class="tags-estado" style="display: flex; align-items: center;">
-                        <h5 class="tag-est">São Paulo</h5>
-                        <h5 class="tag-est">Minas Gerais</h5>
+                        <?php if($d['sp_estado'] == 1) { echo "<h5 class='tag-est'> São Paulo </h5>"; };?>
+                        <?php if($d['mg_estado'] == 1) { echo "<h5 class='tag-est'> Minas Gerais </h5>"; };?>
+                        <?php if($d['rj_estado'] == 1) { echo "<h5 class='tag-est'> Rio de Janeiro </h5>"; };?>
                     </div>
                     <div class="validade">
-                        <P class="card-validade" style="display: flex; align-items: center; margin-right:15px"> <span class="material-symbols-outlined" style="margin-right: 4px; font-size: 22px;">calendar_today</span> Ativo até 30/07/2025</P>
+                        <P class="card-validade" style="display: flex; align-items: center; margin-right:15px"> <span class="material-symbols-outlined" style="margin-right: 4px; font-size: 22px;">calendar_today</span> Ativo até <?php echo $d['dt_fim'] ?></P>
                     </div>
                 </div>
             </div>
+            <?php endforeach; ?>
         </div>
 
     <script>
@@ -57,9 +77,10 @@
     </script>
 
 <style>
-        .content{
+.content{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .card-ativos{
@@ -68,6 +89,7 @@
     margin-top: 10px;
     box-shadow: 1px 2px 10px #a5a5a5;
     height: 123px;
+    margin-top: 10px;
 }
 
 .top-cards{

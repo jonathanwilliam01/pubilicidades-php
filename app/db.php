@@ -17,6 +17,24 @@ $sqlTabelaPublicidades = "CREATE TABLE IF NOT EXISTS publicidades (
 );";
 
 $pdo->exec($sqlTabelaPublicidades); 
-echo 'Tabela criada!';
+echo "Tabela criada! <br>";
+
+$insertTabela = "INSERT INTO public.publicidades
+(titulo, descricao, imagem, botao_link, titulo_botao_link, sp_estado, mg_estado, rj_estado, dt_inicio, dt_fim)
+VALUES('Teste publicidade', 'Publicidade de teste', 'aniversario-de-sao-paulo-10-curiosidades-sobre-a-cidade.jpg', 'https://projeto-tributario.vercel.app/', 'Teste', 1, 1, NULL, '2025-06-30', '2025-07-30');";
+
+$pdo->exec($insertTabela); 
+echo "Registro criado! <br>";
+
+$selectPublicidades="select * from publicidades";
+
+$stmt = $pdo->prepare($selectPublicidades); 
+$stmt->execute(); 
+$dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach($dados as $d):
+    echo $d['id'] . "<br>";
+    echo $d['titulo'] . "<br>";
+endforeach;
 
 ?>
