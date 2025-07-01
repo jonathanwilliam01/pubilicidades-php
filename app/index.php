@@ -45,6 +45,6 @@ include_once 'conexao.php';
   }
   </style>
 
-  <script src="js/overlay.js"></script>
+  <script src="actions/functions/overlay.js"></script>
 </body>
 </html>

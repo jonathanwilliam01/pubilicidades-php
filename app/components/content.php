@@ -144,7 +144,6 @@ if (isset($_POST['encerrar']) && isset($_POST['id_encerrar'])) {
             if (e.target === overlay) overlay.style.display = 'none';
              });
         });
-
     </script>
 
 <style>
