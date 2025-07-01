@@ -8,7 +8,7 @@ include_once 'functions/inserePublicidade.php';
     <form method="POST" action="" enctype="multipart/form-data">
         <div class="titulo-form">
             <h3> Nova publicidade</h3>
-            <span class="material-symbols-outlined" style="margin-right: 15px;">close</span>
+            <span class="material-symbols-outlined" id="close" style="margin-right: 15px;">close</span>
         </div>
 
         <div class="form-campos1">
@@ -82,6 +82,7 @@ include_once 'functions/inserePublicidade.php';
         display: flex;   
         justify-content: center;
         align-items: center;
+        
     }
 
     form{

@@ -33,6 +33,10 @@ if (isset($_POST['encerrar']) && isset($_POST['id_encerrar'])) {
     exit();
 }
 
+if(isset($_GET['id'])){
+    echo $_GET['id'];
+}
+
 ?>
 
 <div class="content">
@@ -51,10 +55,12 @@ if (isset($_POST['encerrar']) && isset($_POST['id_encerrar'])) {
                                 <span class="material-symbols-outlined more-btn">more_vert</span>
 
                                 <ul class="options-menu">
-                                    <li class="op-editar" id="edit-publi"> <span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">edit</span>Editar</li>
+                                    <a href="/actions/editarPublicidade.php?id=<?php echo $d['id']; ?>" style="all:unset;cursor:pointer;">
+                                        <li class="op-editar"> <span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">edit</span>Editar</li>
+                                    </a>
                                     <form method="POST"> 
-                                        <input type="hidden" name="id_encerrar" value="<?php echo $d['id']; ?>">
-                                        <button type="submit" name="encerrar" style="all:unset; cursor:pointer;">
+                                            <input type="hidden" name="id_encerrar" value="<?php echo $d['id']; ?>">
+                                            <button type="submit" name="encerrar" style="all:unset; cursor:pointer;">
                                             <li class="op-excluir" style="color:red"><span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">cancel</span>Encerrar</li>
                                         </button>
                                     </form> 

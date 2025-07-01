@@ -1,23 +1,48 @@
 <?php
-
+include_once '../conexao.php';
+include_once 'functions/editarPublicidade.php';
 ?>
 
 <script src="functions/js-functions.js"></script>
 
-<div class="editar-publicidade" id="overlayEditPubli" style="display: none;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>Editar Publicidade</title>
+</head>
+<body>
+    <div class="editar-publicidade" id="overlayEditPubli">
     <form method="POST" action="" enctype="multipart/form-data">
         <div class="titulo-form">
             <h3> Editar publicidade</h3>
-            <span class="material-symbols-outlined" style="margin-right: 15px;">close</span>
+            <a href="../../index.php" style="all:unset;cursor:pointer;"><span class="material-symbols-outlined" id="close" style="margin-right: 15px;">close</span></a>
         </div>
 
         <div class="form-campos1">
-            <label>Estado contemplados*
-                <input type="text" name="estados">
-            </label>
+            <?php foreach($dados as $d): ?>
+                <label>Estado contemplados*
+                  <div class="estados">
+                    <label> São Paulo
+                        <input type="hidden" name="sp" value="0">
+                        <input type="checkbox" name="sp" value="1" >
+                    </label>
+                    <label> Rio de Janeiro
+                        <input type="hidden" name="rj" value="0">
+                        <input type="checkbox" name="rj" value="1">
+                    </label>
+                    <label> Minas Gerais
+                        <input type="hidden" name="mg" value="0">
+                        <input type="checkbox" name="mg" value="1">
+                    </label>
+                  </div>
+                </label>
 
             <label>Titulo*
-                <input type="text" name="titulo">
+                <input type="text" name="titulo" value="<?php echo $d['titulo'] ?>">
             </label>
 
             <label>Descrição*
@@ -48,14 +73,18 @@
                 <input type="file" name="img-publi" id="img-publi" class="img-publicidade" accept="image/*" required>
                 <img id="preview-img" style="display:none; margin-top:8px; width:100px; height:100px; border-radius:6px;">
             </label>
-</div>
+        </div>
+        <?php endforeach; ?>
 
         <div class="form-buttons">
             <button id="cancelar" style="border:1px solid rgb(73, 73, 73); color: rgb(73, 73, 73);"><span class="material-symbols-outlined" style="margin-right: 12px;">close</span>Cancelar</button>
-            <input type="submit" class="confirm" name="confirmar" value = "Confirmar" style="background-color: rgb(65, 91, 235); color: white;">
+            <button type="submit" class="confirm" name="confirmar" value = "Confirmar" style="background-color: rgb(65, 91, 235); color: white;"><span class="material-symbols-outlined" style="margin-right: 12px;">check</span>Confirmar</button>
         </div>
     </form>
 </div>
+    
+</body>
+</html>
 
 <style>
     .editar-publicidade{
@@ -81,6 +110,18 @@
 
     h3{
         padding: 12px 12px
+    }
+
+    .estados{
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+     .estados label{
+        display: inline-block;
+        align-items: center;
+        gap: 4px;
     }
 
     .form-buttons{

@@ -24,10 +24,6 @@ include_once 'conexao.php';
         <?php
         include_once 'actions/nova-publicidade.php';
         ?>
-
-        <?php
-        include_once 'actions/editar-publicidade.php';
-        ?>
     </main>
 
         <!-- <?php

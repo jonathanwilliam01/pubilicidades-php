@@ -1,8 +1,8 @@
   document.addEventListener('DOMContentLoaded', () => {
     //ações de fechar a div
-    const overlay   = document.getElementById('overlayNovaPubli'); 
-    const overlayedit = document.getElementById('overlayEditPubli');  
-    const btnCloseX = document.querySelector('.titulo-form span');   
+    const overlay   = document.getElementById('.overlayNovaPubli'); 
+    const overlayedit = document.getElementById('.overlayEditPubli');  
+    const btnCloseX = document.getElementById('close');   
     const btnCancel = document.getElementById('cancelar');        
 
     function fecharOverlay() {
