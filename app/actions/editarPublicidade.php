@@ -1,6 +1,8 @@
 <?php
 include_once '../conexao.php';
 include_once 'functions/editarPublicidade.php';
+
+$img = $d['imagem'] ?? ''; 
 ?>
 
 <script src="functions/js-functions.js"></script>
@@ -27,16 +29,16 @@ include_once 'functions/editarPublicidade.php';
                 <label>Estado contemplados*
                   <div class="estados">
                     <label> São Paulo
-                        <input type="hidden" name="sp" value="0">
-                        <input type="checkbox" name="sp" value="1" >
+                        <input type="hidden" name="sp" value="1" <?= $d['sp_estado'] ? 'checked' : '' ?>>
+                        <input type="checkbox" name="sp" value="1" <?= $d['sp_estado'] ? 'checked' : '' ?>>
                     </label>
                     <label> Rio de Janeiro
-                        <input type="hidden" name="rj" value="0">
-                        <input type="checkbox" name="rj" value="1">
+                        <input type="hidden" name="rj" value="1" <?= $d['rj_estado'] ? 'checked' : '' ?>>
+                        <input type="checkbox" name="rj" value="1" <?= $d['rj_estado'] ? 'checked' : '' ?>>
                     </label>
                     <label> Minas Gerais
-                        <input type="hidden" name="mg" value="0">
-                        <input type="checkbox" name="mg" value="1">
+                        <input type="hidden" name="mg" value="1" <?= $d['mg_estado'] ? 'checked' : '' ?>>
+                        <input type="checkbox" name="mg" value="1" <?= $d['mg_estado'] ? 'checked' : '' ?>>
                     </label>
                   </div>
                 </label>
@@ -46,38 +48,38 @@ include_once 'functions/editarPublicidade.php';
             </label>
 
             <label>Descrição*
-                <input type="text" name="descricao">
+                <input type="text" name="descricao" value="<?php echo $d['descricao'] ?>">
             </label>
         </div>
 
         <div class="form-campos2">
             <label>Titulo do Botão*
-                <input type="text" name="tit-botao">
+                <input type="text" name="tit-botao" value="<?php echo $d['titulo_botao_link'] ?>">
             </label>
 
             <label>Link do Botão*
-                <input type="text" name="link-botao">
+                <input type="text" name="link-botao" value="<?php echo $d['botao_link'] ?>">
             </label>
 
             <label>Data de Publicação*
-                <input type="date" name="dt-ini-publi">
+                <input type="date" name="dt-ini-publi" value="<?= $d['dt_inicio'] ? date('Y-m-d', strtotime($d['dt_inicio'])) : '' ?>">
             </label>
 
             <label>Data Final da Publicação*
-                <input type="date" name="dt-fim-publi">
+                <input type="date" name="dt-fim-publi" value="<?= $d['dt_fim'] ? date('Y-m-d', strtotime($d['dt_fim'])) : '' ?>">
             </label>
         </div>
 
         <div class="form-img">
             <label style="margin-left: 20px;">IMAGEM DA PUBLICIDADE*
-                <input type="file" name="img-publi" id="img-publi" class="img-publicidade" accept="image/*" required>
-                <img id="preview-img" style="display:none; margin-top:8px; width:100px; height:100px; border-radius:6px;">
+                <input type="file" name="img-publi" id="img-publi" class="img-publicidade" accept="image/*">
+                <img id="preview-img" src="<?= $img ? '/'.$img : '' ?>" style="display:none; margin-top:8px; width:100px; height:100px; border-radius:6px;">
             </label>
         </div>
         <?php endforeach; ?>
 
         <div class="form-buttons">
-            <button id="cancelar" style="border:1px solid rgb(73, 73, 73); color: rgb(73, 73, 73);"><span class="material-symbols-outlined" style="margin-right: 12px;">close</span>Cancelar</button>
+            <button id="cancelar" type="button" onclick="location.href='../../index.php';" style="border:1px solid rgb(73, 73, 73); color: rgb(73, 73, 73);"><span class="material-symbols-outlined" style="margin-right: 12px;">close</span>Cancelar</button>
             <button type="submit" class="confirm" name="confirmar" value = "Confirmar" style="background-color: rgb(65, 91, 235); color: white;"><span class="material-symbols-outlined" style="margin-right: 12px;">check</span>Confirmar</button>
         </div>
     </form>
