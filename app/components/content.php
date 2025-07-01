@@ -4,19 +4,39 @@ $selectPublicidades="
 select 
 id, titulo, descricao, imagem,
 botao_link, titulo_botao_link, sp_estado, mg_estado,
-rj_estado, to_char(dt_inicio, 'DD/MM/YY') as dt_inicio, to_char(dt_fim, 'DD/MM/YY') as dt_fim,
+rj_estado, to_char(dt_inicio, 'DD/MM/YYYY') as dt_inicio, to_char(dt_fim, 'DD/MM/YYYY') as dt_fim,
 case when dt_fim < current_date then 'vencida' 
-     when dt_fim > current_date then 'valida' end as validade
+     when dt_fim >= current_date then 'valida' end as validade
 from publicidades";
 
-$stmt = $pdo->prepare($selectPublicidades); 
-$stmt->execute(); 
+$filtroAtiv = " where dt_fim >= current_date";
+$publiAtivas = $selectPublicidades . $filtroAtiv;
 
+$filtroIn = " where dt_fim < current_date";
+$publiInativas = $selectPublicidades . $filtroIn;
+
+$stmt = $pdo->prepare($publiAtivas); 
+$stmt->execute(); 
 $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmti = $pdo->prepare($publiInativas); 
+$stmti->execute(); 
+$dadosin = $stmti->fetchAll(PDO::FETCH_ASSOC);
+
+
+if (isset($_POST['encerrar']) && isset($_POST['id_encerrar'])) {
+    $id = (int)$_POST['id_encerrar'];
+    $sqlUpdate = "UPDATE publicidades SET dt_fim = current_date - INTERVAL '1 day' WHERE id = :id";
+    $stmt = $pdo->prepare($sqlUpdate);
+    $stmt->execute([':id' => $id]);
+
+    exit();
+}
 
 ?>
 
 <div class="content">
+<!-- PUBLICIDADES ATIVAS -->
     <?php foreach($dados as $d): ?>
             <div class="card-ativos">
                 <div class="top-cards">
@@ -32,7 +52,12 @@ $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                 <ul class="options-menu">
                                     <li class="op-editar" id="edit-publi"> <span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">edit</span>Editar</li>
-                                    <li class="op-excluir" style="color:red"><span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">cancel</span>Encerrar</li>
+                                    <form method="POST"> 
+                                        <input type="hidden" name="id_encerrar" value="<?php echo $d['id']; ?>">
+                                        <button type="submit" name="encerrar" style="all:unset; cursor:pointer;">
+                                            <li class="op-excluir" style="color:red"><span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">cancel</span>Encerrar</li>
+                                        </button>
+                                    </form> 
                                 </ul>
                             </div>
                         </div>
@@ -52,7 +77,51 @@ $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
             </div>
-            <?php endforeach; ?>
+    <?php endforeach; ?>
+
+    
+    <div class="outras-publi">
+        <h2 style="margin-left:30px; font-size: 15px; margin-top: 20px;">OUTRAS PUBLICIDADES</h2>
+    </div>
+
+<!-- PUBLICIDADES INATIVAS -->
+    <?php foreach($dadosin as $di): ?>
+            <div class="cards-inativos">
+                <div class="top-cards">
+                    <div class="card-img">
+                        <img class="img-card" src="./uploads/<?php echo $di['imagem'] ?>">
+                    </div>
+                    <div class="card-text" style="width: 91%;">
+                        <div class="titulo-edit-card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                            <p><b> <?php echo $di['titulo'] ?> </b></p>
+                            <div class="right-titulo-card">
+                                <?php if($di['validade'] == 'valida') {echo "<buttom class='publi-atual'>Publicidade Atual</buttom>";}; ?>
+                                <span class="material-symbols-outlined more-btn">more_vert</span>
+
+                                <ul class="options-menu">
+                                    <li class="op-editar" id="edit-publi"> <span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">edit</span>Editar</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p><?php echo $di['descricao'] ?></p>
+                    </div>    
+                </div>
+
+                <div class="bottom-card">
+                    <div class="tags-estado" style="display: flex; align-items: center;">
+                        <?php if($di['sp_estado'] == 1) { echo "<h5 class='tag-est'> São Paulo </h5>"; };?>
+                        <?php if($di['mg_estado'] == 1) { echo "<h5 class='tag-est'> Minas Gerais </h5>"; };?>
+                        <?php if($di['rj_estado'] == 1) { echo "<h5 class='tag-est'> Rio de Janeiro </h5>"; };?>
+                    </div>
+                    <div class="validade">
+                        <P class="card-validade" style="display: flex; align-items: center; margin-right:15px"> <span class="material-symbols-outlined" style="margin-right: 4px; font-size: 22px;">calendar_today</span> 
+                        <?php if( $di['validade'] == 'valida'){echo "Ativo até " . $di['dt_fim'];} else {echo "Vencida em " . $di['dt_fim'];};?></P>
+                    </div>
+                </div>
+            </div>
+    <?php endforeach; ?>
+
+            </div>
         </div>
 
     <script>
@@ -85,7 +154,7 @@ $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
     align-items: center;
 }
 
-.card-ativos{
+.card-ativos, .cards-inativos{
     width: 95%;
     border-radius: 10px;
     margin-top: 10px;
@@ -163,5 +232,12 @@ li{
     border-radius: 5px;
     padding: 3px;
     margin-bottom: 5px;
+}
+
+.outras-publi{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
 }
 </style>
