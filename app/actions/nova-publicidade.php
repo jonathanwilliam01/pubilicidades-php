@@ -4,7 +4,7 @@ include_once 'functions/inserePublicidade.php';
 
 <script src="functions/js-functions.js"></script>
 
-<div class="nova-publicidade" id="overlayNovaPubli" style="display: none;">
+<div class="nova-publicidade" id="overlayNovaPubli" style="display:none">
     <form method="POST" action="" enctype="multipart/form-data">
         <div class="titulo-form">
             <h3> Nova publicidade</h3>
@@ -12,11 +12,11 @@ include_once 'functions/inserePublicidade.php';
         </div>
 
         <div class="form-campos1">
-            <div class="estados">
                 <label>Estado contemplados*
+                  <div class="estados">
                     <label> São Paulo
                         <input type="hidden" name="sp" value="0">
-                        <input type="checkbox" name="sp" value="1">
+                        <input type="checkbox" name="sp" value="1" >
                     </label>
                     <label> Rio de Janeiro
                         <input type="hidden" name="rj" value="0">
@@ -26,8 +26,8 @@ include_once 'functions/inserePublicidade.php';
                         <input type="hidden" name="mg" value="0">
                         <input type="checkbox" name="mg" value="1">
                     </label>
+                  </div>
                 </label>
-            </div>
 
             <label>Titulo*
                 <input type="text" name="titulo">
@@ -65,7 +65,7 @@ include_once 'functions/inserePublicidade.php';
 
         <div class="form-buttons">
             <button id="cancelar" style="border:1px solid rgb(73, 73, 73); color: rgb(73, 73, 73);"><span class="material-symbols-outlined" style="margin-right: 12px;">close</span>Cancelar</button>
-            <input type="submit" class="confirm" name="confirmar" value = "Confirmar" style="background-color: rgb(65, 91, 235); color: white;">
+            <button type="submit" class="confirm" name="confirmar" value = "Confirmar" style="background-color: rgb(65, 91, 235); color: white;"><span class="material-symbols-outlined" style="margin-right: 12px;">check</span>Confirmar</button>
         </div>
     </form>
 </div>
@@ -103,7 +103,7 @@ include_once 'functions/inserePublicidade.php';
     }
 
      .estados label{
-        display: flex;
+        display: inline-block;
         align-items: center;
         gap: 4px;
     }
