@@ -1,5 +1,5 @@
 <?php
-//include_once __DIR__ . '/../actions/functions/consultaPublicidades.php';
+include_once 'header.php';
 
 $selectPublicidades="
 select 
@@ -15,6 +15,18 @@ $publiAtivas = $selectPublicidades . $filtroAtiv;
 
 $filtroIn = " where dt_fim < current_date";
 $publiInativas = $selectPublicidades . $filtroIn;
+
+$estado = $_POST['estadosSelect'] ?? '';
+
+if ($estado !== '' && $estado !== 'all') {
+    $publiAtivas   .= " AND {$estado}_estado = 1";  
+    $publiInativas .= " AND {$estado}_estado = 1";  
+}
+
+if ($estado === 'all' && $estado !== '') {
+    $publiAtivas   .= " AND (sp_estado = 1 OR rj_estado = 1 OR mg_estado = 1)";  
+    $publiInativas .= " AND (sp_estado = 1 OR rj_estado = 1 OR mg_estado = 1)";  
+}
 
 $stmt = $pdo->prepare($publiAtivas); 
 $stmt->execute(); 
@@ -161,6 +173,7 @@ if (isset($_POST['encerrar']) && isset($_POST['id_encerrar'])) {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10px;
 }
 
 .card-ativos, .cards-inativos{
