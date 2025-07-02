@@ -8,4 +8,5 @@ try {
     //echo "Conexão com PostgreSQL bem‑sucedida!";
 } catch (PDOException $e) {
     echo "Erro: " . $e->getMessage();
-}?>
+}
+?>

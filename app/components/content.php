@@ -1,4 +1,5 @@
 <?php
+//include_once __DIR__ . '/../actions/functions/consultaPublicidades.php';
 
 $selectPublicidades="
 select 
@@ -33,12 +34,11 @@ if (isset($_POST['encerrar']) && isset($_POST['id_encerrar'])) {
   $stmt = $pdo->prepare($publiAtivas); 
   $stmt->execute(); 
   $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  
+
   $stmti = $pdo->prepare($publiInativas); 
   $stmti->execute(); 
   $dadosin = $stmti->fetchAll(PDO::FETCH_ASSOC);
 }
-
 ?>
 
 <div class="content">

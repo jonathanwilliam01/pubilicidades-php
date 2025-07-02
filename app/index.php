@@ -12,6 +12,9 @@ include_once 'conexao.php';
     <title>Publicidades</title>
 </head>
 <body>
+    <script src="actions/functions/overlay.js"></script>
+    <script src="actions/functions/js-functions.js"></script>
+
     <main>
         <?php
         include_once 'components/header.php';
@@ -40,7 +43,5 @@ include_once 'conexao.php';
     'opsz' 24
   }
   </style>
-
-  <script src="actions/functions/overlay.js"></script>
 </body>
 </html>

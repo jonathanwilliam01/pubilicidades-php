@@ -30,15 +30,15 @@ $img = $d['imagem'] ?? '';
                 <label>Estado contemplados*
                   <div class="estados">
                     <label> São Paulo
-                        <input type="hidden" name="sp" value="1" <?= $d['sp_estado'] ? 'checked' : '' ?>>
+                        <input type="hidden" name="sp" value="0">
                         <input type="checkbox" name="sp" value="1" <?= $d['sp_estado'] ? 'checked' : '' ?>>
                     </label>
                     <label> Rio de Janeiro
-                        <input type="hidden" name="rj" value="1" <?= $d['rj_estado'] ? 'checked' : '' ?>>
+                        <input type="hidden" name="rj" value="0">
                         <input type="checkbox" name="rj" value="1" <?= $d['rj_estado'] ? 'checked' : '' ?>>
                     </label>
                     <label> Minas Gerais
-                        <input type="hidden" name="mg" value="1" <?= $d['mg_estado'] ? 'checked' : '' ?>>
+                        <input type="hidden" name="mg" value="0">
                         <input type="checkbox" name="mg" value="1" <?= $d['mg_estado'] ? 'checked' : '' ?>>
                     </label>
                   </div>
@@ -74,7 +74,7 @@ $img = $d['imagem'] ?? '';
         <div class="form-img">
             <label style="margin-left: 20px;">IMAGEM DA PUBLICIDADE*
                 <input type="file" name="img-publi" id="img-publi" class="img-publicidade" accept="image/*">
-                <img id="preview-img" src="<?= $img ? '/'.$img : '' ?>" style="display:none; margin-top:8px; width:100px; height:100px; border-radius:6px;">
+                <img src="/uploads/<?php echo $d['imagem'] ?>" style="margin-top:8px; width:100px; height:100px; border-radius:6px;">
             </label>
         </div>
         <?php endforeach; ?>

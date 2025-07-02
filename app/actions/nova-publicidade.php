@@ -2,8 +2,6 @@
 include_once 'functions/inserePublicidade.php';
 ?>
 
-<script src="functions/js-functions.js"></script>
-
 <div class="nova-publicidade" id="overlayNovaPubli" style="display:none">
     <form method="POST" action="" enctype="multipart/form-data">
         <div class="titulo-form">
@@ -64,7 +62,7 @@ include_once 'functions/inserePublicidade.php';
         </div>
 
         <div class="form-buttons">
-            <button id="cancelar" style="border:1px solid rgb(73, 73, 73); color: rgb(73, 73, 73);"><span class="material-symbols-outlined" style="margin-right: 12px;">close</span>Cancelar</button>
+            <button type="button" id="cancelar" style="border:1px solid rgb(73, 73, 73); color: rgb(73, 73, 73);"><span class="material-symbols-outlined" style="margin-right: 12px;">close</span>Cancelar</button>
             <button type="submit" class="confirm" name="confirmar" value = "Confirmar" style="background-color: rgb(65, 91, 235); color: white;"><span class="material-symbols-outlined" style="margin-right: 12px;">check</span>Confirmar</button>
         </div>
     </form>
@@ -175,3 +173,26 @@ include_once 'functions/inserePublicidade.php';
         width: 95%;
     }
 </style>
+
+<script>
+    //ações de fechar a div
+    const overlay   = document.getElementById('overlayNovaPubli'); 
+    const overlayedit = document.getElementById('overlayEditPubli');  
+    const btnCloseX = document.getElementById('close');   
+    const btnCancel = document.getElementById('cancelar');        
+
+    function fecharOverlay() {
+      overlay.style.display = 'none';
+      location.reload();
+    }
+
+    function fecharOverlayEdit() {
+      overlayedit.style.display = 'none';
+    }
+
+    btnCloseX.addEventListener('click', fecharOverlay);
+    btnCancel.addEventListener('click', fecharOverlay);
+
+    btnCloseX.addEventListener('click', fecharOverlayEdit);
+    btnCancel.addEventListener('click', fecharOverlayEdit);
+</script>

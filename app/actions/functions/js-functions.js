@@ -1,23 +1,4 @@
   document.addEventListener('DOMContentLoaded', () => {
-    //ações de fechar a div
-    const overlay   = document.getElementById('.overlayNovaPubli'); 
-    const overlayedit = document.getElementById('.overlayEditPubli');  
-    const btnCloseX = document.getElementById('close');   
-    const btnCancel = document.getElementById('cancelar');        
-
-    function fecharOverlay() {
-      overlay.style.display = 'none';
-    }
-
-    function fecharOverlayEdit() {
-      overlayedit.style.display = 'none';
-    }
-
-    btnCloseX.addEventListener('click', fecharOverlay);
-    btnCancel.addEventListener('click', fecharOverlay);
-
-    btnCloseX.addEventListener('click', fecharOverlayEdit);
-    btnCancel.addEventListener('click', fecharOverlayEdit);
 
     //faz preview da imagem
     const inputImg = document.getElementById('img-publi');
@@ -34,7 +15,7 @@
          }
     });
 
-    //retorna o tamanho maximo da imagem
+    //retorna alerta do tamanho maximo da imagem
     const input = document.getElementById('img-publi');
         input.addEventListener('change', () => {
         const file = input.files[0];
