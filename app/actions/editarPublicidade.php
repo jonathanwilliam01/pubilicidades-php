@@ -18,7 +18,7 @@ $img = $d['imagem'] ?? '';
 </head>
 <body>
     <div class="editar-publicidade" id="overlayEditPubli">
-    <form method="POST" action="" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
         <div class="titulo-form">
             <h3> Editar publicidade</h3>
             <a href="../../index.php" style="all:unset;cursor:pointer;"><span class="material-symbols-outlined" id="close" style="margin-right: 15px;">close</span></a>
@@ -26,6 +26,7 @@ $img = $d['imagem'] ?? '';
 
         <div class="form-campos1">
             <?php foreach($dados as $d): ?>
+                <input type="hidden" name="id" value="<?= $d['id']; ?>">
                 <label>Estado contemplados*
                   <div class="estados">
                     <label> São Paulo
@@ -80,7 +81,7 @@ $img = $d['imagem'] ?? '';
 
         <div class="form-buttons">
             <button id="cancelar" type="button" onclick="location.href='../../index.php';" style="border:1px solid rgb(73, 73, 73); color: rgb(73, 73, 73);"><span class="material-symbols-outlined" style="margin-right: 12px;">close</span>Cancelar</button>
-            <button type="submit" class="confirm" name="confirmar" value = "Confirmar" style="background-color: rgb(65, 91, 235); color: white;"><span class="material-symbols-outlined" style="margin-right: 12px;">check</span>Confirmar</button>
+            <button type="submit" class="confirm" name="atualizar" value = "Confirmar" style="background-color: rgb(65, 91, 235); color: white;"><span class="material-symbols-outlined" style="margin-right: 12px;">check</span>Atualizar</button>
         </div>
     </form>
 </div>

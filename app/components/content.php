@@ -23,18 +23,20 @@ $stmti = $pdo->prepare($publiInativas);
 $stmti->execute(); 
 $dadosin = $stmti->fetchAll(PDO::FETCH_ASSOC);
 
-
+//encerra a validadde da publi
 if (isset($_POST['encerrar']) && isset($_POST['id_encerrar'])) {
-    $id = (int)$_POST['id_encerrar'];
-    $sqlUpdate = "UPDATE publicidades SET dt_fim = current_date - INTERVAL '1 day' WHERE id = :id";
-    $stmt = $pdo->prepare($sqlUpdate);
-    $stmt->execute([':id' => $id]);
+  $id = (int)$_POST['id_encerrar'];
+  $sqlUpdate = "UPDATE publicidades SET dt_fim = current_date - INTERVAL '1 day' WHERE id = :id";
+  $stmt = $pdo->prepare($sqlUpdate);
+  $stmt->execute([':id' => $id]);
 
-    exit();
-}
-
-if(isset($_GET['id'])){
-    echo $_GET['id'];
+  $stmt = $pdo->prepare($publiAtivas); 
+  $stmt->execute(); 
+  $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  
+  $stmti = $pdo->prepare($publiInativas); 
+  $stmti->execute(); 
+  $dadosin = $stmti->fetchAll(PDO::FETCH_ASSOC);
 }
 
 ?>
@@ -127,7 +129,7 @@ if(isset($_GET['id'])){
                     </div>
                 </div>
             </div>
-    <?php endforeach; ?>
+    <?php endforeach;?>
 
             </div>
         </div>
