@@ -1,6 +1,8 @@
 <?php
 $estado = $_POST['estadosSelect']
           ?? 'all'; 
+        
+$pesquisa = $_POST['pesquisar'] ?? ''; 
 ?>
         <header>
             <a href=""><img src="https://embras.net/assets/images/logo.png" style="margin-left:30px; height:30px; width:90px"></a>
@@ -21,7 +23,11 @@ $estado = $_POST['estadosSelect']
                     <option value="mg" name="mg" <?= $estado === 'mg'  ? 'selected' : '' ?>>Minas Gerais</option>
                 </select>
             </form>
-                <span class="material-symbols-outlined" style="margin-right: 30px;">search</span>
+                <div class="search" style="display:flex; align-items: center; margin-right:30px">
+                    <form method="POST">
+                        <input type="text" name="pesquisar" placeholder="Pesquisar" value=<?=$pesquisa?>>
+                    </form>
+                </div>
         </div>
 
 <style>

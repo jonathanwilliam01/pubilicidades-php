@@ -14,7 +14,7 @@ include_once 'functions/inserePublicidade.php';
                   <div class="estados">
                     <label> São Paulo
                         <input type="hidden" name="sp" value="0">
-                        <input type="checkbox" name="sp" value="1" >
+                        <input type="checkbox" name="sp" value="1">
                     </label>
                     <label> Rio de Janeiro
                         <input type="hidden" name="rj" value="0">
@@ -28,29 +28,29 @@ include_once 'functions/inserePublicidade.php';
                 </label>
 
             <label>Titulo*
-                <input type="text" name="titulo">
+                <input type="text" name="titulo" required>
             </label>
 
             <label>Descrição*
-                <input type="text" name="descricao">
+                <input type="text" name="descricao" required>
             </label>
         </div>
 
         <div class="form-campos2">
             <label>Titulo do Botão*
-                <input type="text" name="tit-botao">
+                <input type="text" name="tit-botao" required>
             </label>
 
             <label>Link do Botão*
-                <input type="text" name="link-botao">
+                <input type="text" name="link-botao" required>
             </label>
 
             <label>Data de Publicação*
-                <input type="date" name="dt-ini-publi">
+                <input type="date" name="dt-ini-publi" required>
             </label>
 
             <label>Data Final da Publicação*
-                <input type="date" name="dt-fim-publi">
+                <input type="date" name="dt-fim-publi" required>
             </label>
         </div>
 
