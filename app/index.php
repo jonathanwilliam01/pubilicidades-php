@@ -36,7 +36,7 @@ require_once __DIR__.'/components/functions/consulta.php';
 
   <?php
   if (isset($_POST['reativar'])) {
-      include_once 'components/toasts/encerrado.php';
+      include_once 'components/toasts/reativado.php';
   }
   ?>
 

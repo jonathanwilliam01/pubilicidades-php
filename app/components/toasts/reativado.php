@@ -23,7 +23,6 @@
         justify-content: left;
         align-items: center;       
     }
-
     .toast-reativado.show{ opacity:1; }
 </style>
 

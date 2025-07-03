@@ -107,7 +107,6 @@ if (isset($_GET['toast'])) {
             </div>
     <?php endforeach;?>
             <div class="footer" style="height: 30px;"></div>
-
         </div>
 
 <script>
