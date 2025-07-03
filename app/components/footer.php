@@ -1,5 +1,5 @@
     <footer>
-        <h4>Sistema de gerenciamento de publicidades - V1.01</h4>
+        <h4></h4>
     </footer>
 
 <style>

@@ -1,4 +1,23 @@
 <?php
+$estado = $_POST['estadosSelect']
+          ?? 'all'; 
+        
+$pesquisa = $_POST['pesquisar'] ?? ''; 
+
+//encerra a validade da publi
+if (isset($_POST['encerrar']) && isset($_POST['id_encerrar'])) {
+  $id = (int)$_POST['id_encerrar'];
+  $sqlUpdate = "UPDATE publicidades SET dt_fim = current_date - INTERVAL '1 day' WHERE id = :id";
+  $stmt = $pdo->prepare($sqlUpdate);
+  $stmt->execute([':id' => $id]);
+}
+
+if (isset($_POST['reativar']) && isset($_POST['id_reativar'])) {
+  $id = (int)$_POST['id_reativar'];
+  $sqlUpdate = "UPDATE publicidades SET dt_fim = current_date + INTERVAL '1 day' WHERE id = :id";
+  $stmt = $pdo->prepare($sqlUpdate);
+  $stmt->execute([':id' => $id]);
+}
 
 $selectPublicidades="
 select 
@@ -40,19 +59,4 @@ $stmti = $pdo->prepare($publiInativas);
 $stmti->execute(); 
 $dadosin = $stmti->fetchAll(PDO::FETCH_ASSOC);
 
-//encerra a validadde da publi
-if (isset($_POST['encerrar']) && isset($_POST['id_encerrar'])) {
-  $id = (int)$_POST['id_encerrar'];
-  $sqlUpdate = "UPDATE publicidades SET dt_fim = current_date - INTERVAL '1 day' WHERE id = :id";
-  $stmt = $pdo->prepare($sqlUpdate);
-  $stmt->execute([':id' => $id]);
-
-  $stmt = $pdo->prepare($publiAtivas); 
-  $stmt->execute(); 
-  $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-  $stmti = $pdo->prepare($publiInativas); 
-  $stmti->execute(); 
-  $dadosin = $stmti->fetchAll(PDO::FETCH_ASSOC);
-}
 ?>

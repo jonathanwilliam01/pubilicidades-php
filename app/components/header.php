@@ -10,7 +10,7 @@ $pesquisa = $_POST['pesquisar'] ?? '';
         </header>
 
         <nav>
-                <h1 style="margin-left:30px; font-size: 27px;">Gerenciamento de publicidades</h1>
+            <h1 style="margin-left:30px; font-size: 27px;">Gerenciamento de publicidades</h1>
             <button class="nova-publi" id="btnNovaPubli" style="margin-right:30px;"> <span class="material-symbols-outlined" style="margin-right: 7px;">add_circle</span>Nova Publicidade</button>
         </nav>
 
@@ -23,9 +23,9 @@ $pesquisa = $_POST['pesquisar'] ?? '';
                     <option value="mg" name="mg" <?= $estado === 'mg'  ? 'selected' : '' ?>>Minas Gerais</option>
                 </select>
             </form>
-                <div class="search" style="display:flex; align-items: center; margin-right:30px">
-                    <form method="POST">
-                        <input type="text" name="pesquisar" placeholder="Pesquisar" value=<?=$pesquisa?>>
+                <div class="search" style=" margin-right:30px">
+                    <form method="POST" style="all:unset; box-sizing: border-box;">
+                        <input type="text" name="pesquisar" placeholder="Pesquisar" value=<?=$pesquisa?> >
                     </form>
                 </div>
         </div>

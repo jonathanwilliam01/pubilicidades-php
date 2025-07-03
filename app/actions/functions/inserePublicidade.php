@@ -47,7 +47,7 @@
                     ':dt_inicio'    => $dtInicio,
                     ':dt_fim'       => $dtFim
                 ]);
-            
+                    header('location: index.php');
                 exit;
             }
 ?>

@@ -1,7 +1,14 @@
 <?php
 include_once 'header.php';
-
 include_once 'functions/consulta.php';
+
+if (isset($_GET['toast'])) {
+    include_once __DIR__ . '/toasts/encerrado.php';
+}
+
+if (isset($_GET['toast'])) {
+    include_once __DIR__ . '/toasts/cadastrado.php';
+}
 ?>
 
 <div class="content">
@@ -73,6 +80,12 @@ include_once 'functions/consulta.php';
                                     <a href="/actions/editarPublicidade.php?id=<?php echo $di['id']; ?>" style="all:unset;cursor:pointer;">
                                         <li class="op-editar"> <span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">edit</span>Editar</li>
                                     </a>
+                                    <form method="POST"> 
+                                            <input type="hidden" name="id_reativar" value="<?php echo $di['id']; ?>">
+                                            <button type="submit" name="reativar" style="all:unset; cursor:pointer;">
+                                            <li class="op-reativar" style="color:green"><span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">check</span>Reativar</li>
+                                        </button>
+                                    </form> 
                                 </ul>
                             </div>
                         </div>
@@ -93,8 +106,8 @@ include_once 'functions/consulta.php';
                 </div>
             </div>
     <?php endforeach;?>
+            <div class="footer" style="height: 30px;"></div>
 
-            </div>
         </div>
 
 <script>
