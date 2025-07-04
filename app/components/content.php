@@ -2,13 +2,6 @@
 include_once 'header.php';
 include_once 'functions/consulta.php';
 
-if (isset($_GET['toast'])) {
-    include_once __DIR__ . '/toasts/encerrado.php';
-}
-
-if (isset($_GET['toast'])) {
-    include_once __DIR__ . '/toasts/cadastrado.php';
-}
 ?>
 
 <div class="content">
@@ -140,7 +133,7 @@ if (isset($_GET['toast'])) {
 }
 
 .card-ativos, .cards-inativos{
-    width: 95%;
+    width: 96.5%;
     border-radius: 10px;
     margin-top: 10px;
     box-shadow: 1px 2px 10px #a5a5a5;
