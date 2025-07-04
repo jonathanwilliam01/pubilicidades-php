@@ -6,7 +6,7 @@ include_once 'functions/inserePublicidade.php';
     <form method="POST" action="" enctype="multipart/form-data">
         <div class="titulo-form">
             <h3> Nova publicidade</h3>
-            <span class="material-symbols-outlined" id="close" style="margin-right: 15px;">close</span>
+            <span class="material-symbols-outlined" id="close" onclick="location.href='../../index.php';" style="margin-right: 15px;">close</span>
         </div>
 
         <div class="form-campos1">
@@ -62,7 +62,7 @@ include_once 'functions/inserePublicidade.php';
         </div>
 
         <div class="form-buttons">
-            <button type="button" id="cancelar" style="border:1px solid rgb(73, 73, 73); color: rgb(73, 73, 73);"><span class="material-symbols-outlined" style="margin-right: 12px;">close</span>Cancelar</button>
+            <button type="button" id="cancelar" onclick="location.href='../../index.php';" style="border:1px solid rgb(73, 73, 73); color: rgb(73, 73, 73);"><span class="material-symbols-outlined" style="margin-right: 12px;">close</span>Cancelar</button>
             <button type="submit" class="confirm" name="confirmar" value = "Confirmar" style="background-color: rgb(65, 91, 235); color: white;"><span class="material-symbols-outlined" style="margin-right: 12px;">check</span>Confirmar</button>
         </div>
     </form>
@@ -176,23 +176,10 @@ include_once 'functions/inserePublicidade.php';
 
 <script>
     //ações de fechar a div
-    const overlay   = document.getElementById('overlayNovaPubli'); 
-    const overlayedit = document.getElementById('overlayEditPubli');  
-    const btnCloseX = document.getElementById('close');   
-    const btnCancel = document.getElementById('cancelar');        
+    const overlay   = document.getElementById('overlayNovaPubli');      
 
     function fecharOverlay() {
       overlay.style.display = 'none';
       location.reload();
     }
-
-    function fecharOverlayEdit() {
-      overlayedit.style.display = 'none';
-    }
-
-    btnCloseX.addEventListener('click', fecharOverlay);
-    btnCancel.addEventListener('click', fecharOverlay);
-
-    btnCloseX.addEventListener('click', fecharOverlayEdit);
-    btnCancel.addEventListener('click', fecharOverlayEdit);
 </script>
