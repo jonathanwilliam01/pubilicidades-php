@@ -74,7 +74,7 @@ $img = $d['imagem'] ?? '';
         <div class="form-img">
             <label style="margin-left: 20px;">IMAGEM DA PUBLICIDADE*
                 <input type="file" name="img-publi" id="img-publi" class="img-publicidade" accept="image/*">
-                <img src="/uploads/<?php echo $d['imagem'] ?>" style="margin-top:8px; width:100px; height:100px; border-radius:6px;">
+                <img src="/uploads/<?php echo $d['imagem'] ?>" id="preview-img" style="margin-top:8px; width:100px; height:100px; border-radius:6px;">
             </label>
         </div>
         <?php endforeach; ?>

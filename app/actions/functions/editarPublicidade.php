@@ -27,12 +27,30 @@ if(isset($_POST['atualizar'])){
      $rj          = (int)$_POST['rj'];
      $mg          = (int)$_POST['mg'];
      $dtInicio    = $_POST['dt-ini-publi'];
-     $dtFim       = $_POST['dt-fim-publi'];     
+     $dtFim       = $_POST['dt-fim-publi'];    
+     
+     if (empty($_FILES['img-publi']['tmp_name']) || $_FILES['img-publi']['error'] !== UPLOAD_ERR_OK) {
+                die('Imagem obrigatória!');
+     }
+
+     $mime = mime_content_type($_FILES['img-publi']['tmp_name']);
+     $ext  = $mime === 'image/png' ? '.png' : '.jpg';
+     $nome = uniqid('publicidade_') . $ext;
+
+     $dirUploads = __DIR__ . '/../../uploads/';
+     if (!is_dir($dirUploads)) mkdir($dirUploads, 0775, true);
+
+     $Imgsis  = $dirUploads . $nome; 
+     $Img = $nome;  
+     
+     if (!move_uploaded_file($_FILES['img-publi']['tmp_name'], $Imgsis)) {
+         die('Falha ao mover a imagem.');
+     }
 
 $sqlupdate = "update publicidades set 
 titulo = :titulo, descricao = :descricao, titulo_botao_link = :titulo_botao,
 botao_link = :botao_link, sp_estado = :sp, mg_estado = :mg, rj_estado = :rj,
-dt_inicio = :dt_inicio, dt_fim = :dt_fim
+imagem = :imagem, dt_inicio = :dt_inicio, dt_fim = :dt_fim
 where id = :id";
 
 $upd = $pdo->prepare($sqlupdate);
@@ -40,7 +58,7 @@ $upd->execute([
                     ':titulo'       => $titulo,
                     ':descricao'    => $descricao,
                     ':id'           => $id,
-                    //':imagem'       => $Img,
+                    ':imagem'       => $Img,
                     ':titulo_botao' => $tituloBotao,
                     ':botao_link'   => $linkBotao,
                     ':sp'    => $sp,
