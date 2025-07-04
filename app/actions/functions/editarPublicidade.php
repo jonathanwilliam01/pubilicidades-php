@@ -53,20 +53,33 @@ $upd->execute([
 header('location: ../index.php');
 };
 
-//usado pra debugar o update
-if (isset($_POST['atualizar'])) {
-    var_dump($_POST); // veja tudo que chegou
-    // exit; // comente depois de confirmar
+if(isset($_POST['delete'])){
+     $id = (int)$_GET['id'];
 
-    $id = (int)$_POST['id'];
-    $titulo = $_POST['titulo'] ?? '';
+$sqldelete = "delete from publicidades where id = :id";
 
-    $upd = $pdo->prepare('UPDATE publicidades SET titulo = :t WHERE id = :id');
-    $upd->execute([':t' => $titulo, ':id' => $id]);
+$del = $pdo->prepare($sqldelete);
+$del->execute([
+                    ':id'           => $id
+]);
 
-    echo 'Linhas afetadas: '.$upd->rowCount();
-    exit;
-}
+header('location: ../index.php');
+};
+
+// //usado pra debugar o update
+// if (isset($_POST['atualizar'])) {
+//     var_dump($_POST); // veja tudo que chegou
+//     // exit; // comente depois de confirmar
+
+//     $id = (int)$_POST['id'];
+//     $titulo = $_POST['titulo'] ?? '';
+
+//     $upd = $pdo->prepare('UPDATE publicidades SET titulo = :t WHERE id = :id');
+//     $upd->execute([':t' => $titulo, ':id' => $id]);
+
+//     echo 'Linhas afetadas: '.$upd->rowCount();
+//     exit;
+// }
 
 include_once './editarPublicidade.php';
 

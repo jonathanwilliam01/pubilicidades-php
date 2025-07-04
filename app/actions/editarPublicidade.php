@@ -80,6 +80,7 @@ $img = $d['imagem'] ?? '';
         <?php endforeach; ?>
 
         <div class="form-buttons">
+            <button type="submit" name="delete" style="border:1px solid rgb(253, 2, 2); color: rgb(253, 2, 2)"><span class="material-symbols-outlined" style="margin-right: 12px;">delete</span>Deletar</button>
             <button id="cancelar" type="button" onclick="location.href='../../index.php';" style="border:1px solid rgb(73, 73, 73); color: rgb(73, 73, 73);"><span class="material-symbols-outlined" style="margin-right: 12px;">close</span>Cancelar</button>
             <button type="submit" class="confirm" name="atualizar" value = "Confirmar" style="background-color: rgb(65, 91, 235); color: white;"><span class="material-symbols-outlined" style="margin-right: 12px;">check</span>Atualizar</button>
         </div>
