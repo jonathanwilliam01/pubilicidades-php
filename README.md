@@ -1,14 +1,29 @@
-Olá!
-Esta versão foi construída apenas com a linguagem PHP e utilizando as linguagens de tipagem visuais (HTML, CSS e JavaScript)
+Sistema de Publicidades em PHP
 
-Para utilizar este sistema, basta selecionar uma pasta local de sua maquina e com o terminal utilizar o comando git clone para clonar o repositório:
+Olá! Este sistema foi desenvolvido utilizando PHP puro, juntamente com HTML, CSS e JavaScript para a parte visual do sistema.
+
+Pré-requisitos:
+- [Docker](https://www.docker.com/) instalado e em execução na sua máquina
+- [Git](https://git-scm.com/) instalado
+- Editor de texto como [Visual Studio Code](https://code.visualstudio.com/)
+
+Passos para utilizaçao do sistema:
+1. Clonar o repositório:
+Abra o terminal e execute:
 git clone https://github.com/jonathanwilliam01/publicidades-php
 
-Assim que clonado o repositório e com o Docker aberto em sua maquina, acesse o terminal do vs code ou terminal da maquina e utilize o comando:
-docker composse up --build 
+2. Acessar a pasta do projeto:
+cd publicidades-php
 
-Assim que criado a imagem, acesse a pagina web abaixo para criar as dependências do banco de dados:
-localhost:8080/db.php
+3. Subir os containers com Docker Compose:
+docker compose up --build
 
-Assim que executado os passos acima o sistema já pode ser acessado na web pelo caminho abaixo:
-localhost:8080/index.php
+4. Criar a tabela do banco de dados:
+http://localhost:8080/db.php
+
+5. Acessar o sistema: 
+http://localhost:8080/index.php
+
+Observações:
+As imagens carregadas ficam armazenadas localmente na pasta /uploads.
+O banco de dados utilizado é o PostgreSQL, rodando em container Docker.
