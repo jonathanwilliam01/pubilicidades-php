@@ -1,7 +1,6 @@
 <?php
 include_once 'header.php';
 include_once 'functions/consulta.php';
-
 ?>
 
 <div class="content">
@@ -101,6 +100,7 @@ include_once 'functions/consulta.php';
     <?php endforeach;?>
             <div class="footer" style="height: 30px;"></div>
         </div>
+
 
 <script>
     document.addEventListener('click', function (e) {
