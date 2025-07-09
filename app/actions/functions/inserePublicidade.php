@@ -13,10 +13,6 @@
             if (!strtotime($dtInicio) || !strtotime($dtFim)) {
                 die('Datas inválidas!');
             }
-
-            if (!filter_var($linkBotao, FILTER_VALIDATE_URL)) {
-                die('Link do botão inválido!');
-            }
             
             //BLOCO DE UPLOAD DE IMAGEM
             if (empty($_FILES['img-publi']['tmp_name']) || $_FILES['img-publi']['error'] !== UPLOAD_ERR_OK) {

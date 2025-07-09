@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   const btnNova  = document.getElementById('btnNovaPubli');  
   const btnEdit  = document.getElementById('edit-publi');  
+
   const overlay  = document.getElementById('overlayNovaPubli'); 
   const overlayEdit  = document.getElementById('overlayEditPubli'); 
+
 
   if (!btnNova || !overlay) return;
 
@@ -24,3 +26,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === overlayEdit) overlayEdit.style.display = 'none';
   });
 });
+

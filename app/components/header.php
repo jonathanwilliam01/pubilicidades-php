@@ -23,6 +23,11 @@ $pesquisa = $_POST['pesquisar'] ?? '';
                     <option value="mg" name="mg" <?= $estado === 'mg'  ? 'selected' : '' ?>>Minas Gerais</option>
                 </select>
             </form>
+
+            <form method="POST" style="all: unset; box-sizing: border-box;">
+                <button class="nova-publi" id="btnNovo" type="submit" name="novo-estado">Cadastrar Novo Estado</button>
+            </form>
+
                 <div class="search" style=" margin-right:30px">
                     <form method="POST" style="all:unset; box-sizing: border-box;">
                         <input type="text" name="pesquisar" placeholder="Pesquisar" value=<?=$pesquisa?> >

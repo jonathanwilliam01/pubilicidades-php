@@ -3,7 +3,7 @@ version: '3.8'
 services:
   app:
     build: ./
-    container_name: php-app
+    container_name: publicidades-php-app
     volumes:
       - ./app:/var/www/html
     ports:
@@ -13,7 +13,7 @@ services:
 
   db:
     image: postgres:16
-    container_name: postgres-db
+    container_name: postgres-db-php
     environment:
       POSTGRES_DB: publicidades
       POSTGRES_USER: embras

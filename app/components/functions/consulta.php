@@ -36,14 +36,18 @@ $publiInativas = $selectPublicidades . $filtroIn;
 
 $estado = $_POST['estadosSelect'] ?? '';
 
-if ($estado !== '' && $estado !== 'all') {
+if ($estado !== '' && $estado !== 'all' && $estado !== 'novo') {
     $publiAtivas   .= " AND {$estado}_estado = 1";  
     $publiInativas .= " AND {$estado}_estado = 1";  
 }
 
-if ($estado === 'all' && $estado !== '') {
+if ($estado === 'all' && $estado !== 'novo') {
     $publiAtivas   .= " AND (sp_estado = 1 OR rj_estado = 1 OR mg_estado = 1)";  
     $publiInativas .= " AND (sp_estado = 1 OR rj_estado = 1 OR mg_estado = 1)";  
+}
+
+if($estado === 'novo'){
+  header('location:index.php');
 }
 
 if($pesquisa !== ''){

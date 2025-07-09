@@ -29,6 +29,10 @@ require_once __DIR__.'/components/functions/consulta.php';
   <?php include_once 'actions/nova-publicidade.php'; ?>
 
   <?php
+      include_once 'actions/novoEstado.php';
+  ?>
+
+  <?php
   if (isset($_POST['encerrar'])) {
       include_once 'components/toasts/encerrado.php';
   }

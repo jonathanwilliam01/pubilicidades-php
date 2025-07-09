@@ -17,14 +17,46 @@ $sqlTabelaPublicidades = "CREATE TABLE IF NOT EXISTS publicidades (
 );";
 
 $pdo->exec($sqlTabelaPublicidades); 
-echo "Tabela criada! <br>";
+echo "Tabela publicidades criada! <br>";
+
+$sqlTabelaCadEstados = "CREATE TABLE IF NOT EXISTS cad_estado (
+    id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    descricao varchar(255) NOT NULL,
+    uf varchar(3) NOT NULL
+);
+
+CREATE UNIQUE INDEX cad_estado_descricao_idx ON public.cad_estado (descricao);";
+
+$pdo->exec($sqlTabelaCadEstados); 
+echo "Tabela cad_estado criada! <br>";
+
+$insertEstado = "INSERT INTO public.cad_estado
+(descricao,uf) values
+('São Paulo', 'SP'),
+('Rio de Janeiro', 'RJ'),
+('Minas Gerais', 'MG');
+";
+
+$pdo->exec($insertEstado); 
+echo "Estados criados! <br>";
 
 $insertTabela = "INSERT INTO public.publicidades
 (titulo, descricao, imagem, botao_link, titulo_botao_link, sp_estado, mg_estado, rj_estado, dt_inicio, dt_fim)
-VALUES('Teste publicidade', 'Publicidade de teste', 'aniversario-de-sao-paulo-10-curiosidades-sobre-a-cidade.jpg', 'https://projeto-tributario.vercel.app/', 'Teste', 1, 1, NULL, '2025-06-30', '2025-07-30');";
+VALUES('Teste publicidade', 'Publicidade de teste', 'aniversario-de-sao-paulo-10-curiosidades-sobre-a-cidade.jpg', 'https://projeto-tributario.vercel.app/', 'Teste', 1, 1, 0, '2025-06-30', '2025-07-30');";
 
 $pdo->exec($insertTabela); 
 echo "Registro criado! <br>";
+
+$selectEstados="select * from cad_estado";
+
+$stme = $pdo->prepare($selectEstados); 
+$stme->execute(); 
+$est = $stme->fetchAll(PDO::FETCH_ASSOC);
+
+foreach($est as $e):
+    echo $e['descricao'] . "<br>";
+    echo $e['uf'] . "<br>";
+endforeach;
 
 $selectPublicidades="select * from publicidades";
 
