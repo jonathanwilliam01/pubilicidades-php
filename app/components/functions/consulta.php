@@ -1,7 +1,4 @@
-<?php
-$estado = $_POST['estadosSelect']
-          ?? 'all'; 
-        
+<?php        
 $pesquisa = $_POST['pesquisar'] ?? ''; 
 
 //encerra a validade da publi
@@ -18,6 +15,11 @@ if (isset($_POST['reativar']) && isset($_POST['id_reativar'])) {
   $stmt = $pdo->prepare($sqlUpdate);
   $stmt->execute([':id' => $id]);
 }
+
+$selectEstados ="select * from cad_estado";
+$est = $pdo->prepare($selectEstados); 
+$est->execute(); 
+$dadosEst = $est->fetchAll(PDO::FETCH_ASSOC);
 
 $selectPublicidades="
 select 
@@ -36,18 +38,14 @@ $publiInativas = $selectPublicidades . $filtroIn;
 
 $estado = $_POST['estadosSelect'] ?? '';
 
-if ($estado !== '' && $estado !== 'all' && $estado !== 'novo') {
+if ($estado !== '' && $estado !== 'all') {
     $publiAtivas   .= " AND {$estado}_estado = 1";  
     $publiInativas .= " AND {$estado}_estado = 1";  
 }
 
-if ($estado === 'all' && $estado !== 'novo') {
+if ($estado === 'all') {
     $publiAtivas   .= " AND (sp_estado = 1 OR rj_estado = 1 OR mg_estado = 1)";  
     $publiInativas .= " AND (sp_estado = 1 OR rj_estado = 1 OR mg_estado = 1)";  
-}
-
-if($estado === 'novo'){
-  header('location:index.php');
 }
 
 if($pesquisa !== ''){

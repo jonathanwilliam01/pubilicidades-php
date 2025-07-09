@@ -1,4 +1,6 @@
 <?php
+include_once 'functions/consulta.php';
+
 $estado = $_POST['estadosSelect']
           ?? 'all'; 
         
@@ -18,9 +20,9 @@ $pesquisa = $_POST['pesquisar'] ?? '';
             <form method="POST" style="all: unset; box-sizing: border-box;">
                 <select name="estadosSelect" style="margin-left:30px; border:none; background-color:#f9f9f9; padding: 10px 10px; font-size: 15px;" onchange="this.form.submit()">
                     <option value="all" name="all" style="display: flex; align-items: center;">Visualizar todos os estados</option> <span class="material-symbols-outlined" style="margin-left: 5px;">stat_minus_1</span>
-                    <option value="sp" name="sp" <?= $estado === 'sp'  ? 'selected' : '' ?>>São Paulo</option>
-                    <option value="rj" name="rj" <?= $estado === 'rj'  ? 'selected' : '' ?>>Rio de Janeiro</option>
-                    <option value="mg" name="mg" <?= $estado === 'mg'  ? 'selected' : '' ?>>Minas Gerais</option>
+                    <?php foreach($dadosEst as $es): ?>
+                      <option value="<?php echo $es['uf'] ?>" name="<?php $es['uf'] ?>" <?= $estado === $es['uf']  ? 'selected' : '' ?>><?php echo $es['descricao'] ?></option>
+                    <?php endforeach; ?>
                 </select>
             </form>
 
