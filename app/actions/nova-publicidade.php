@@ -3,7 +3,7 @@ include_once 'functions/inserePublicidade.php';
 ?>
 
 <div class="nova-publicidade" id="overlayNovaPubli" style="display:none">
-    <form method="POST" action="" enctype="multipart/form-data">
+    <form method="POST" action="" enctype="multipart/form-data" class="cad-edit">
         <div class="titulo-form">
             <h3> Nova publicidade</h3>
             <span class="material-symbols-outlined" id="close" onclick="location.href='../../index.php';" style="margin-right: 15px;">close</span>
@@ -89,7 +89,7 @@ include_once 'functions/inserePublicidade.php';
         
     }
 
-    form{
+    .cad-edit{
         background-color: white;
         width: 40%;
         height: 600px;

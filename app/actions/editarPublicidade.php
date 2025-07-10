@@ -107,7 +107,7 @@ $img = $d['imagem'] ?? '';
     form{
         background-color: white;
         width: 40%;
-        height: 75%;
+        height: 600px;
         border-radius: 10px;
         font-size: 13px;
     }
