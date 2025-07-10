@@ -6,7 +6,7 @@ $selectPublicidades="
 select 
 id, titulo, descricao, imagem,
 botao_link, titulo_botao_link, sp_estado, mg_estado,
-rj_estado, dt_inicio, dt_fim,
+rj_estado, dt_inicio, dt_fim, padrao,
 case when dt_fim < current_date then 'vencida' 
      when dt_fim >= current_date then 'valida' end as validade
 from publicidades
@@ -23,11 +23,42 @@ if(isset($_POST['atualizar'])){
      $descricao   = $_POST['descricao'];
      $tituloBotao = $_POST['tit-botao'];
      $linkBotao   = $_POST['link-botao'];
-     $sp          = (int)$_POST['sp'];
-     $rj          = (int)$_POST['rj'];
-     $mg          = (int)$_POST['mg'];
+     $sp = isset($_POST['sp']) && $_POST['sp'] == '1' ? 1 : 0;
+     $rj = isset($_POST['rj']) && $_POST['rj'] == '1' ? 1 : 0;
+     $mg = isset($_POST['mg']) && $_POST['mg'] == '1' ? 1 : 0;
      $dtInicio    = $_POST['dt-ini-publi'];
      $dtFim       = $_POST['dt-fim-publi']; 
+     $padrao      = isset($_POST['padrao']) && $_POST['padrao'] == '1' ? 1 : 0;
+
+               if ($padrao === 1) {
+                $errosPadrao = [];
+
+                if ($sp === 1) {
+                    $sql = "SELECT 1 FROM publicidades WHERE sp_estado = 1 AND padrao = 1";
+                    $stmt = $pdo->query($sql);
+                    if ($stmt->fetch()) $errosPadrao[] = 'São Paulo';
+                }
+
+                if ($rj === 1) {
+                    $sql = "SELECT 1 FROM publicidades WHERE rj_estado = 1 AND padrao = 1";
+                    $stmt = $pdo->query($sql);
+                    if ($stmt->fetch()) $errosPadrao[] = 'Rio de Janeiro';
+                }
+
+                if ($mg === 1) {
+                    $sql = "SELECT 1 FROM publicidades WHERE mg_estado = 1 AND padrao = 1";
+                    $stmt = $pdo->query($sql);
+                    if ($stmt->fetch()) $errosPadrao[] = 'Minas Gerais';
+                }
+
+                if (!empty($errosPadrao)) {
+                    $estadosComPadrao = implode(', ', $errosPadrao);
+                    echo "<script>alert('⚠️ Já existe publicidade padrão para os seguintes estados: {$estadosComPadrao}');
+                    window.location.href = 'http://localhost:8080/actions/editarPublicidade.php?id=$id';
+                    </script>";
+                    exit;
+                }
+                }
 
           if (empty($_FILES['img-publi']['tmp_name']) || $_FILES['img-publi']['error'] !== UPLOAD_ERR_OK) {
                      die('Imagem obrigatória!');
@@ -50,7 +81,7 @@ if(isset($_POST['atualizar'])){
 $sqlupdate = "update publicidades set 
 titulo = :titulo, descricao = :descricao, titulo_botao_link = :titulo_botao,
 botao_link = :botao_link, sp_estado = :sp, mg_estado = :mg, rj_estado = :rj,
-imagem = :imagem, dt_inicio = :dt_inicio, dt_fim = :dt_fim
+imagem = :imagem, dt_inicio = :dt_inicio, dt_fim = :dt_fim, padraO = :padrao
 where id = :id";
 
 $upd = $pdo->prepare($sqlupdate);
@@ -65,7 +96,8 @@ $upd->execute([
                     ':mg'    => $mg,
                     ':rj'    => $rj,
                     ':dt_inicio'    => $dtInicio,
-                    ':dt_fim'       => $dtFim
+                    ':dt_fim'       => $dtFim,
+                    ':padrao'       => $padrao
 ]);
 
 header('location: ../index.php');

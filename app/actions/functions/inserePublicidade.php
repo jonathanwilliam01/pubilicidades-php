@@ -9,6 +9,38 @@
                     $mg = isset($_POST['mg']) && $_POST['mg'] == '1' ? 1 : 0;
                     $dtInicio    = $_POST['dt-ini-publi'];
                     $dtFim       = $_POST['dt-fim-publi'];
+                    $padrao      = isset($_POST['padrao']) && $_POST['padrao'] == '1' ? 1 : 0;
+
+                if ($padrao === 1) {
+                $errosPadrao = [];
+
+                if ($sp === 1) {
+                    $sql = "SELECT 1 FROM publicidades WHERE sp_estado = 1 AND padrao = 1";
+                    $stmt = $pdo->query($sql);
+                    if ($stmt->fetch()) $errosPadrao[] = 'São Paulo';
+                }
+
+                if ($rj === 1) {
+                    $sql = "SELECT 1 FROM publicidades WHERE rj_estado = 1 AND padrao = 1";
+                    $stmt = $pdo->query($sql);
+                    if ($stmt->fetch()) $errosPadrao[] = 'Rio de Janeiro';
+                }
+
+                if ($mg === 1) {
+                    $sql = "SELECT 1 FROM publicidades WHERE mg_estado = 1 AND padrao = 1";
+                    $stmt = $pdo->query($sql);
+                    if ($stmt->fetch()) $errosPadrao[] = 'Minas Gerais';
+                }
+
+                if (!empty($errosPadrao)) {
+                    $estadosComPadrao = implode(', ', $errosPadrao);
+                    echo "<script>alert('⚠️ Já existe publicidade padrão para os seguintes estados: {$estadosComPadrao}');
+                    window.location.href = 'http://localhost:8080/index.php';
+                    </script>";
+                    exit;
+                }
+                }
+
 
             if (!strtotime($dtInicio) || !strtotime($dtFim)) {
                 die('Datas inválidas!');
@@ -39,9 +71,9 @@
             //FIM DO BLOCO DE UPLOAD DE IMAGEM
 
             $sql = 'INSERT INTO public.publicidades
-                (titulo, descricao, imagem, titulo_botao_link, botao_link, sp_estado, mg_estado, rj_estado, dt_inicio, dt_fim)
+                (titulo, descricao, imagem, titulo_botao_link, botao_link, sp_estado, mg_estado, rj_estado, dt_inicio, dt_fim, padrao)
                 VALUES
-                (:titulo, :descricao, :imagem, :titulo_botao, :botao_link, :sp, :mg, :rj, :dt_inicio, :dt_fim)';
+                (:titulo, :descricao, :imagem, :titulo_botao, :botao_link, :sp, :mg, :rj, :dt_inicio, :dt_fim, :padrao)';
                 
 
                 $stmt = $pdo->prepare($sql);
@@ -55,7 +87,8 @@
                     ':mg'    => $mg,
                     ':rj'    => $rj,
                     ':dt_inicio'    => $dtInicio,
-                    ':dt_fim'       => $dtFim
+                    ':dt_fim'       => $dtFim,
+                    ':padrao'       => $padrao
                 ]);
                     header('location: index.php');
                 exit;

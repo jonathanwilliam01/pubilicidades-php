@@ -15,7 +15,9 @@ include_once 'functions/consulta.php';
                         <div class="titulo-edit-card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
                             <p><b> <?php echo $d['titulo'] ?> </b></p>
                             <div class="right-titulo-card">
-                                <?php if($d['validade'] == 'valida') {echo "<buttom class='publi-atual'>Publicidade Atual</buttom>";}; ?>
+                                <?php if($d['validade'] == 'valida' && $d['padrao'] == '0') {echo "<buttom class='publi-atual'>Publicidade Atual</buttom>";};
+                                      if($d['padrao'] == '1' && ($d['validade'] == 'vencida' || $d['validade'] == 'valida')) {echo "<buttom class='publi-atual'>Publicidade Padrão</buttom>";};
+                                ?>
                                 <span class="material-symbols-outlined more-btn" style="margin-right: 15px;">more_vert</span>
 
                                 <ul class="options-menu">
@@ -43,7 +45,11 @@ include_once 'functions/consulta.php';
                     </div>
                     <div class="validade">
                         <P class="card-validade" style="display: flex; align-items: center; margin-right:15px"> <span class="material-symbols-outlined" style="margin-right: 4px; font-size: 22px;">calendar_today</span> 
-                        <?php if( $d['validade'] == 'valida'){echo "Ativo até " . $d['dt_fim'];} else {echo "Vencida em " . $d['dt_fim'];};?></P>
+                            <?php if( $d['validade'] == 'valida' && $d['padrao'] == '0'){echo "Ativo até " . $d['dt_fim'];};
+                                  if( $d['validade'] == 'vencida' && $d['padrao'] == '0'){echo "Vencida em " . $d['dt_fim'];};
+                                  if( $d['padrao'] == '1'){echo "Sem validade";};
+                            ?>
+                        </P>
                     </div>
                 </div>
             </div>

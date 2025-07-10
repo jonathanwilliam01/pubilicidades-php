@@ -15,8 +15,6 @@ $sqlTabelaPublicidades = "CREATE TABLE IF NOT EXISTS publicidades (
     dt_inicio date NOT NULL,
     dt_fim date NOT NULL
 );
-
-ALTER TABLE public.publicidades ADD padrao int4 NULL;
 ";
 
 $pdo->exec($sqlTabelaPublicidades); 
@@ -71,5 +69,28 @@ foreach($dados as $d):
     echo $d['id'] . "<br>";
     echo $d['titulo'] . "<br>";
 endforeach;
+
+$trigger="
+CREATE OR REPLACE FUNCTION atualizar_dt_fim_para_padrao()
+RETURNS trigger AS $$
+BEGIN
+    IF NEW.padrao = 1 THEN
+        NEW.dt_fim := DATE '9999-12-31';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+";
+
+$tr = $pdo->prepare($trigger); 
+$tr->execute(); 
+
+$triggerFunc="CREATE TRIGGER trg_atualizar_dt_fim_padrao
+BEFORE INSERT OR UPDATE ON publicidades
+FOR EACH ROW
+EXECUTE FUNCTION atualizar_dt_fim_para_padrao();";
+
+$tr = $pdo->prepare($triggerFunc); 
+$t->execute(); 
 
 ?>

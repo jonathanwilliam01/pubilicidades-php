@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include_once '../conexao.php';
 include_once 'functions/editarPublicidade.php';
 
@@ -29,20 +30,27 @@ $img = $d['imagem'] ?? '';
                 <input type="hidden" name="id" value="<?= $d['id']; ?>">
                 <label>Estado contemplados*
                   <div class="estados">
-                    <label> São Paulo
+                    <label> 
                         <input type="hidden" name="sp" value="0">
                         <input type="checkbox" name="sp" value="1" <?= $d['sp_estado'] ? 'checked' : '' ?>>
-                    </label>
-                    <label> Rio de Janeiro
+                    </label>São Paulo
+                    <label> 
                         <input type="hidden" name="rj" value="0">
                         <input type="checkbox" name="rj" value="1" <?= $d['rj_estado'] ? 'checked' : '' ?>>
-                    </label>
-                    <label> Minas Gerais
+                    </label>Rio de Janeiro
+                    <label> 
                         <input type="hidden" name="mg" value="0">
                         <input type="checkbox" name="mg" value="1" <?= $d['mg_estado'] ? 'checked' : '' ?>>
-                    </label>
+                    </label>Minas Gerais
                   </div>
                 </label>
+
+            <div class="padrao">
+                <label> 
+                    <input type="hidden" name="padrao" value ="0">
+                    <input type="checkbox" name="padrao" value="1" <?= $d['padrao'] ? 'checked' : '' ?>>
+                </label><b>Publicidade Padrão</b>
+            </div>
 
             <label>Titulo*
                 <input type="text" name="titulo" value="<?php echo $d['titulo'] ?>">
@@ -74,7 +82,7 @@ $img = $d['imagem'] ?? '';
         <div class="form-img">
             <label style="margin-left: 20px;">IMAGEM DA PUBLICIDADE*
                 <input type="file" name="img-publi" id="img-publi" class="img-publicidade" accept="image/*">
-                <img src="/uploads/<?php echo $d['imagem'] ?>" id="preview-img" style="margin-top:8px; width:100px; height:100px; border-radius:6px;">
+                <img src="/uploads/<?php echo $d['imagem'] ?>" id="preview-img" style="margin-top:6px; width:90px; height:90px; border-radius:6px;">
             </label>
         </div>
         <?php endforeach; ?>
@@ -89,6 +97,9 @@ $img = $d['imagem'] ?? '';
     
 </body>
 </html>
+<?php
+ob_end_flush();
+?>
 
 <style>
     .editar-publicidade{
@@ -107,7 +118,7 @@ $img = $d['imagem'] ?? '';
     form{
         background-color: white;
         width: 40%;
-        height: 600px;
+        height: 580px;
         border-radius: 10px;
         font-size: 13px;
     }
@@ -116,17 +127,29 @@ $img = $d['imagem'] ?? '';
         padding: 12px 12px
     }
 
-    .estados{
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
+    .estados {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
 
-     .estados label{
-        display: inline-block;
-        align-items: center;
-        gap: 4px;
-    }
+.estados label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.padrao {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.padrao label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
 
     .form-buttons{
         display:flex;            

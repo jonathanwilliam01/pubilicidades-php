@@ -64,7 +64,7 @@ include_once 'functions/inserePublicidade.php';
         <div class="form-img">
             <label style="margin-left: 20px;">IMAGEM DA PUBLICIDADE*
                 <input type="file" name="img-publi" id="img-publi" class="img-publicidade" accept="image/*" required>
-                <img id="preview-img" style="display:none; margin-top:8px; width:100px; height:100px; border-radius:6px;">
+                <img id="preview-img" style="display:none; margin-top:6px; width:90px; height:90px; border-radius:6px;">
             </label>
         </div>
         <div class="form-buttons">
@@ -92,7 +92,7 @@ include_once 'functions/inserePublicidade.php';
     .cad-edit{
         background-color: white;
         width: 40%;
-        height: 600px;
+        height: 98%;
         border-radius: 10px;
         font-size: 13px;
     }
