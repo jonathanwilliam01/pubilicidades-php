@@ -14,7 +14,10 @@ $sqlTabelaPublicidades = "CREATE TABLE IF NOT EXISTS publicidades (
     rj_estado integer,
     dt_inicio date NOT NULL,
     dt_fim date NOT NULL
-);";
+);
+
+ALTER TABLE public.publicidades ADD padrao int4 NULL;
+";
 
 $pdo->exec($sqlTabelaPublicidades); 
 echo "Tabela publicidades criada! <br>";

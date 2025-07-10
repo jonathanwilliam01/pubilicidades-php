@@ -27,6 +27,13 @@ include_once 'functions/inserePublicidade.php';
                   </div>
                 </label>
 
+                <div class="padrao">
+                <label> Publicidade Padrão
+                    <input type="hidden" name="padrao" value ="0">
+                    <input type="checkbox" name="padrao" value="1">
+                </label>
+                </div>
+
             <label>Titulo*
                 <input type="text" name="titulo" required>
             </label>
@@ -60,7 +67,6 @@ include_once 'functions/inserePublicidade.php';
                 <img id="preview-img" style="display:none; margin-top:8px; width:100px; height:100px; border-radius:6px;">
             </label>
         </div>
-
         <div class="form-buttons">
             <button type="button" id="cancelar" onclick="location.href='../../index.php';" style="border:1px solid rgb(73, 73, 73); color: rgb(73, 73, 73);"><span class="material-symbols-outlined" style="margin-right: 12px;">close</span>Cancelar</button>
             <button type="submit" class="confirm" name="confirmar" value = "Confirmar" style="background-color: rgb(65, 91, 235); color: white;"><span class="material-symbols-outlined" style="margin-right: 12px;">check</span>Confirmar</button>
@@ -86,7 +92,7 @@ include_once 'functions/inserePublicidade.php';
     form{
         background-color: white;
         width: 40%;
-        height: 95%;
+        height: 600px;
         border-radius: 10px;
         font-size: 13px;
     }
@@ -95,13 +101,13 @@ include_once 'functions/inserePublicidade.php';
         padding: 12px 12px
     }
 
-    .estados{
+    .estados, .padrao{
         display: flex;
         align-items: center;
         gap: 12px;
     }
 
-     .estados label{
+     .estados, .padrao label{
         display: inline-block;
         align-items: center;
         gap: 4px;

@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .formEst{
         background-color: white;
         width: 40%;
-        height: 40%;
+        height: 250px;
         border-radius: 10px;
         font-size: 13px;
     }

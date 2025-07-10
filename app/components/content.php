@@ -11,12 +11,12 @@ include_once 'functions/consulta.php';
                     <div class="card-img">
                         <img class="img-card" src="./uploads/<?php echo $d['imagem'] ?>">
                     </div>
-                    <div class="card-text" style="width: 91%;">
+                    <div class="card-text" style="width: 95%;">
                         <div class="titulo-edit-card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
                             <p><b> <?php echo $d['titulo'] ?> </b></p>
                             <div class="right-titulo-card">
                                 <?php if($d['validade'] == 'valida') {echo "<buttom class='publi-atual'>Publicidade Atual</buttom>";}; ?>
-                                <span class="material-symbols-outlined more-btn">more_vert</span>
+                                <span class="material-symbols-outlined more-btn" style="margin-right: 15px;">more_vert</span>
 
                                 <ul class="options-menu">
                                     <a href="/actions/editarPublicidade.php?id=<?php echo $d['id']; ?>" style="all:unset;cursor:pointer;">
@@ -61,18 +61,18 @@ include_once 'functions/consulta.php';
                     <div class="card-img">
                         <img class="img-card" src="./uploads/<?php echo $di['imagem'] ?>">
                     </div>
-                    <div class="card-text" style="width: 91%;">
+                    <div class="card-text" style="width: 95%;">
                         <div class="titulo-edit-card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
                             <p><b> <?php echo $di['titulo'] ?> </b></p>
                             <div class="right-titulo-card">
                                 <?php if($di['validade'] == 'valida') {echo "<buttom class='publi-atual'>Publicidade Atual</buttom>";}; ?>
-                                <span class="material-symbols-outlined more-btn">more_vert</span>
+                                <span class="material-symbols-outlined more-btn" style="margin-right: 15px;">more_vert</span>
 
                                 <ul class="options-menu">
                                     <a href="/actions/editarPublicidade.php?id=<?php echo $di['id']; ?>" style="all:unset;cursor:pointer;">
                                         <li class="op-editar"> <span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">edit</span>Editar</li>
                                     </a>
-                                    <form method="POST"> 
+                                    <form method="POST" class="menu"> 
                                             <input type="hidden" name="id_reativar" value="<?php echo $di['id']; ?>">
                                             <button type="submit" name="reativar" style="all:unset; cursor:pointer;">
                                             <li class="op-reativar" style="color:green"><span class="material-symbols-outlined" style="margin-right: 8px; font-size:20px">check</span>Reativar</li>
