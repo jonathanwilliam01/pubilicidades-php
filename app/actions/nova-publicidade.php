@@ -89,12 +89,20 @@ include_once 'functions/inserePublicidade.php';
         
     }
 
-    .cad-edit{
+    .cad-edit {
         background-color: white;
         width: 40%;
-        height: 98%;
+        height: 75vh;
         border-radius: 10px;
         font-size: 13px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+    }
+
+    form {
+        overflow-y: auto;
     }
 
     h3{

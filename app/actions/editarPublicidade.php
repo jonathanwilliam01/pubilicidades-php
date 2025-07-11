@@ -115,13 +115,21 @@ ob_end_flush();
         align-items: center;
     }
 
-    form{
-        background-color: white;
-        width: 40%;
-        height: 580px;
-        border-radius: 10px;
-        font-size: 13px;
-    }
+form {
+    background-color: white;
+    width: 40%;
+    height: 75vh;
+    border-radius: 10px;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+form {
+    overflow-y: auto;
+}
 
     h3{
         padding: 12px 12px
@@ -139,17 +147,17 @@ ob_end_flush();
     gap: 4px;
 }
 
-.padrao {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
+    .padrao {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
 
-.padrao label {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
+    .padrao label {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
 
     .form-buttons{
         display:flex;            
